@@ -9,39 +9,94 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    
+    @State private var searchText = ""
+    
+    @State private var isFavouriteFilter = 0
+
+
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    @FetchRequest(entity: Item.entity(), sortDescriptors: [])
+    private var ibanData: FetchedResults<Item>
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
-        }
-    }
+            VStack(alignment: .center) {
+                
+  
 
+                Picker("What is your favorite color?", selection: $isFavouriteFilter) {
+                      Text("Tümü").tag(0)
+                      Text("Favoriler").tag(1)
+                  }
+                  .pickerStyle(.segmented)
+                  .padding(.horizontal,20)
+                
+                /*
+                ScrollView {
+                    IbanCard().padding(.top,20)
+                    IbanCard().padding(.top,20)
+                }
+                 */
+                
+
+                List {
+                    ForEach(ibanData.filter { $0.isFavourite==Bool(isFavouriteFilter as NSNumber) }) { item in
+                        if (item.isFavourite==true) {
+                            Text(item.nameSurname ?? "")
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
+                
+
+                    
+                    
+                if (ibanData.count==0) {
+                        VStack(alignment: .center) {
+                            Image(systemName: "creditcard.circle.fill")
+                              .resizable()
+                              .frame(width: 40, height: 40)
+                                  .foregroundColor(.gray)
+                            Text("Kayıtlı İban Adresi Bulunamadı")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .foregroundColor(.gray)
+                                .padding(.top, 10)
+                        }.frame(alignment: .center)
+                    }
+
+
+                
+                Spacer()
+                HStack(alignment: .bottom) {
+                    Spacer()
+                    NavigationLink(destination: AddIbanView()) {
+                        Text("+")
+                            .frame(width: 55, height: 55)
+                            .foregroundColor(Color.white)
+                            .background(Color.indigo)
+                            .clipShape(Circle())
+                    }.padding()
+                    .padding(.bottom,30)
+                }
+            }
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
+                .navigationTitle("İban Listesi")
+                .background(Color(UIColor.systemGray6))
+                .navigationBarItems(leading:
+                                        HStack {
+                    
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gear")
+                            .foregroundColor(.indigo)
+                    }
+                })
+
+            }
+        }
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
@@ -57,10 +112,10 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { ibanData[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -72,17 +127,11 @@ struct ContentView: View {
             }
         }
     }
-}
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
 }

@@ -13,6 +13,10 @@
 		5E974377292A4CB300E5209E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E974376292A4CB300E5209E /* Preview Assets.xcassets */; };
 		5E974379292A4CB300E5209E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E974378292A4CB300E5209E /* Persistence.swift */; };
 		5E97437C292A4CB300E5209E /* IbanPaylasimSwiftUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E97437A292A4CB300E5209E /* IbanPaylasimSwiftUI.xcdatamodeld */; };
+		5E974384292A4D6B00E5209E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E974383292A4D6B00E5209E /* SettingsView.swift */; };
+		5E974386292A4F8100E5209E /* AddIbanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E974385292A4F8100E5209E /* AddIbanView.swift */; };
+		5E974388292A541A00E5209E /* CoreDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E974387292A541A00E5209E /* CoreDataView.swift */; };
+		5E97438A292A5C1F00E5209E /* IbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E974389292A5C1F00E5209E /* IbanCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		5E974378292A4CB300E5209E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		5E97437B292A4CB300E5209E /* IbanPaylasimSwiftUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IbanPaylasimSwiftUI.xcdatamodel; sourceTree = "<group>"; };
 		5E97437D292A4CB300E5209E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E974383292A4D6B00E5209E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5E974385292A4F8100E5209E /* AddIbanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIbanView.swift; sourceTree = "<group>"; };
+		5E974387292A541A00E5209E /* CoreDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataView.swift; sourceTree = "<group>"; };
+		5E974389292A5C1F00E5209E /* IbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IbanCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,10 @@
 			children = (
 				5E97436F292A4CB100E5209E /* IbanPaylasimSwiftUIApp.swift */,
 				5E974371292A4CB100E5209E /* ContentView.swift */,
+				5E974387292A541A00E5209E /* CoreDataView.swift */,
+				5E974383292A4D6B00E5209E /* SettingsView.swift */,
+				5E974385292A4F8100E5209E /* AddIbanView.swift */,
+				5E974389292A5C1F00E5209E /* IbanCard.swift */,
 				5E974373292A4CB300E5209E /* Assets.xcassets */,
 				5E974378292A4CB300E5209E /* Persistence.swift */,
 				5E97437D292A4CB300E5209E /* Info.plist */,
@@ -145,9 +157,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E974384292A4D6B00E5209E /* SettingsView.swift in Sources */,
+				5E974388292A541A00E5209E /* CoreDataView.swift in Sources */,
 				5E974379292A4CB300E5209E /* Persistence.swift in Sources */,
 				5E974372292A4CB100E5209E /* ContentView.swift in Sources */,
 				5E97437C292A4CB300E5209E /* IbanPaylasimSwiftUI.xcdatamodeld in Sources */,
+				5E97438A292A5C1F00E5209E /* IbanCard.swift in Sources */,
+				5E974386292A4F8100E5209E /* AddIbanView.swift in Sources */,
 				5E974370292A4CB100E5209E /* IbanPaylasimSwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
